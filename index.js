@@ -14,7 +14,13 @@ const questions = [
     'What e-mail address would you like to put for people to contact you with additional questions?'
 ];
 
-const licenses = [];
+const licenses = [
+    'None',
+    'MIT',
+    'Open Source',
+    'Creative Commons',
+    'GNU GPL v3'
+];
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
