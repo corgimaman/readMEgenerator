@@ -2,6 +2,14 @@
 const fs = require('fs');
 var inquirer = require('inquirer');
 // TODO: Create an array of questions for user input
+const licenses = [
+    'None',
+    'MIT',
+    'Creative Commons',
+    'GNU GPL v3',
+    'Apache'
+];
+
 const questions = [
     {
         type: 'input',
@@ -25,14 +33,17 @@ const questions = [
     },
     {
         type: 'confirm',
-        name: 'yn-guidelines',
+        name: 'ynguidelines',
         message: 'Do you have any contribution guidelines?',
         default: false,
     },
     {
         type: 'input',
         name: 'guidelines',
-        message: 'What are your contribution guidelines?'
+        message: 'What are your contribution guidelines?',
+        when: function(answers) {
+            return answers.ynguidelines;
+        }
     },
     {
         type: 'input',
@@ -57,66 +68,61 @@ const questions = [
     }
 ];
 
-const licenses = [
-    'None',
-    'MIT',
-    'Open Source',
-    'Creative Commons',
-    'GNU GPL v3',
-    'Apache'
-];
+// function to make file
+function generateREADME(answers){
+    let guidelines = answers.ynguidelines;
+    let guideline = `## Contribution
+${answers.guidelines}`;
+    let guidelineTOC = `* [Contribution Guidelines](#Contribution)`
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {
-    //fs.writeFile(fileName, data,)
-}
+    let licenseIMG = ""
 
-// TODO: Create a function to initialize app
-function init() {
-    inquirer.prompt(questions).then((answers) => {
-        
-    })
-}
-
-// Function call to initialize app
-init();
-
-// ----------------------------------------- my code -------------------------
-
-const generateREADME = (answers) => 
-    `# ${answers.title}
-    
-    ${answers.description}
-    
-    ## How to Install
-    ${answers.install}
-    
-    ## How to Use
-    ${answers.usage}
-    
-    `
-    +
-
-    if (${answers.yn-guidelines}){
-        `## Contribution Guidelines
-        ${answers.guidelines}`
+    if (answers.license = "MIT") {
+        licenseIMG = "[![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)"
+    } if (answers.license = "Creative Commons") {
+        licenseIMG = "[![License: CC0-1.0](https://img.shields.io/badge/License-CC0%201.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)"
+    } if (answers.license = "GNU GPL v3") {
+        licenseIMG = "[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)"
+    } if (answers.license = "Apache") {
+        licenseIMG = "[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)"
     }
 
-    +
+    return `# ${answers.title}
 
-    `## Test Instructions
-    ${answers.instructions}
-    
-    ## License
-    This project is licensed under the ${answers.license} license.
-    ©[${answers.github}](https://github.com/${answers.github})
+${answers.description}
 
-    ## Questions? Comments?
-    Feel free to reach out to me at ${answers.email} or on [GitHub](https://github.com/${answers.github}).
-    `;
+## Table of Contents
+* [Installation Guide](#Installation)
+* [How to Use](#Usage)
+${guidelines ? guidelineTOC : ''}
+* [Test Instructions](#Instructions)
+* [License](#License)
+* [Contact Info](#Contact)
 
+## Installation
+${answers.install}
 
-function init1() {
+## Usage
+${answers.usage}
+
+${guidelines ? guideline : ''}
+
+## Instructions
+${answers.instructions}
+
+## License
+This project is licensed under the ${answers.license} license.
+
+${licenseIMG}
+
+©[${answers.github}](https://github.com/${answers.github})
+
+## Contact
+Questions? Comments? Feel free to reach out to me at ${answers.email} or on [GitHub](https://github.com/${answers.github}).
+`};
+
+// function to run inquirer
+function init() {
     inquirer.prompt(questions).then((answers) => {
         const READMEcontent = generateREADME(answers);
 
@@ -124,3 +130,6 @@ function init1() {
             err ? console.log(err) : console.log('Successfully created README.md'));
     });
 }
+
+// call function to start program
+init();
