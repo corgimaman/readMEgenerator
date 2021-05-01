@@ -11,20 +11,18 @@ A simple program to create a professional README page in your terminal.
 * [Contact Info](#Contact)
 
 ## Installation
-The package.json is already provided, so navigate to the project folder and run npm install.
+This requires Node.js to install and use. The package.json is already provided, so navigate to the project folder and run npm install.
 
 ## Usage
-Once you've installed the node modules needed, just run npm index.js and answer the questions. The README will generate based on your replies.
-
-
+Once you've installed the node modules needed, just run npm index.js and answer the questions. The README will generate based on your replies. [Here is a YouTube Video Walkthrough](https://youtu.be/3z1187sHmFs)
 
 ## Instructions
 N/A
 
 ## License
-This project is licensed under the Apache license.
+This project is licensed under the MIT license.
 
-[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)
 
 ©[corgimaman](https://github.com/corgimaman)
 

@@ -76,19 +76,7 @@ ${answers.guidelines}`;
     let guidelineTOC = `* [Contribution Guidelines](#Contribution)`
 
     let licenseIMG = ""
-
-    // if (answers.license = "MIT") {
-    //     licenseIMG = "[![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)";
-    // } else if (answers.license = "Creative Commons") {
-    //     licenseIMG = "[![License: CC0-1.0](https://img.shields.io/badge/License-CC0%201.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)";
-    // } else if (answers.license = "GNU GPL v3") {
-    //     licenseIMG = "[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)";
-    // } else if (answers.license = "Apache") {
-    //     licenseIMG = "[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)";
-    // } else {
-    //     licenseIMG = "";
-    // }
-
+    
     switch (answers.license) {
         case "MIT":
             licenseIMG = "[![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)";
